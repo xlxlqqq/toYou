@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>显示不同的图像</title>
+    <style>
+        /* 页面背景图像设置 */
+        body {
+            background-image: url('./images/image3.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        /* 初始隐藏图像 */
+        #image {
+            display: none;
+            margin-top: 20px;
+            max-width: 100%;
+            height: auto;
+        }
+        
+        /* 居中标题 */
+        h1 {
+            text-align: center;
+        }
+
+        /* 图像和描述框容器 */
+        .image-container {
+            display: flex; /* 使用 flexbox */
+            align-items: center; /* 垂直居中对齐图像和描述框 */
+            justify-content: center; /* 水平居中 */
+            margin-top: 20px;
+        }
+        
+        /* 描述框样式 */
+        #description-box {
+            margin-left: 20px;
+            border: 1px solid #ddd;
+            padding: 10px;
+            height: auto;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 遮罩层 -->
+    <div id="overlay" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.8); color: white; display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 9999;">
+        <h2>请输入六位数密码以访问内容</h2>
+        <input type="password" id="password-input" placeholder="输入密码" style="padding: 10px; margin-top: 10px; width: 200px;">
+        <button onclick="verifyPassword()" style="margin-top: 20px; padding: 10px 20px;">提交</button>
+    </div>
+
+
+    <div style="text-align: center;">
+        <h1>To Published</h1>
+    </div>
+    
+    <!-- 按钮区 -->
+    <div style="text-align: center;">
+        <button onclick="showImage1()">显示图像1</button>
+        <button onclick="showImage2()">显示图像2</button>
+        <button onclick="showImage3()">显示图像3</button>
+    </div>
+    
+    <!-- 图像和描述框 -->
+    <div class="image-container">       
+        <!-- 图像和描述框 -->
+        <div>
+            <img id="image" src="" alt="切换图像">
+            <div id="description-box" style="display: none;">
+                <p id="image-caption">这里是图像的描述文字</p>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function showImage1() {
+            // 显示第一张图像
+            const image = document.getElementById("image");
+            const descriptionBox = document.getElementById("description-box");
+            const caption = document.getElementById("image-caption");
+
+            image.src = "./images/image1.jpg";
+            image.style.display = "block";
+            image.style.width = "500px"; // 设置图像宽度
+            caption.innerText = "这是图像1的描述文字";
+            descriptionBox.style.display = "block";
+
+            // 动态调整描述框的宽度与图像一致
+            descriptionBox.style.width = `${image.width}px`;
+        }
+
+        function showImage2() {
+            // 显示第二张图像
+            const image = document.getElementById("image");
+            const caption = document.getElementById("image-caption");
+            const descriptionBox = document.getElementById("description-box");
+
+            image.src = "./images/image2.png";
+            image.style.display = "block";
+            image.style.width = "800px"; // 设置图像宽度
+            caption.innerText = "这是图像2的描述文字";
+            descriptionBox.style.display = "block";
+
+            // 动态调整描述框的宽度与图像一致
+            descriptionBox.style.width = `${image.width}px`;
+        }
+
+        function showImage3() {
+            // 显示第二张图像
+            const image = document.getElementById("image");
+            const caption = document.getElementById("image-caption");
+            const descriptionBox = document.getElementById("description-box");
+
+            image.src = "./images/image3.png";
+            image.style.display = "block";
+            image.style.width = "800px"; // 设置图像宽度
+            caption.innerText = "这是图像2的描述文字";
+            descriptionBox.style.display = "block";
+
+            // 动态调整描述框的宽度与图像一致
+            descriptionBox.style.width = `${image.width}px`;
+        }
+
+        function verifyPassword() {
+            const overlay = document.getElementById("overlay");
+            const passwordInput = document.getElementById("password-input");
+            const correctPassword = "041922"; // 设置预设密码
+
+            if (passwordInput.value === correctPassword) {
+                overlay.style.display = "none"; // 隐藏遮罩层
+            } else {
+                alert("密码错误，请重试！");
+            }
+        }
+
+    </script>
+</body>
+
+</html>
